@@ -24,20 +24,21 @@ class Todo {
   delete() {
     if (!this.id) { //if user tries to delete todo that doesn't exists in database.  
         throw new Error('Trying to delete todo without id!');
-      } else {
-          const todoId = new mongodb.ObjectId(this.id);
-          return db.getDb().collection('todos').deleteOne({ _id: todoId });
-      }
-  
+      } 
+        const todoId = new mongodb.ObjectId(this.id);
+        return db.getDb().collection('todo').deleteOne({ _id: todoId });
   }
 
-  // delete all todos
+
+  // get  all todos
   static async getTodos() {
       const todos =  await db.getDb().collection('todo').find().toArray();
 
       return todos.map(todo => {
-          return new Todo(todo._id, todo.text)
+          return new Todo(todo.text, todo._id);
       })
   }
 
 }
+
+module.exports = Todo

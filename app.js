@@ -1,9 +1,11 @@
 const express = require('express');
 
 const db = require('./data/database');
-
+const enableCors = require('./middlewares/cors');
 const todoRoutes = require('./routes/todo.routes');
+
 const app = express();
+app.use(enableCors);
 app.use(express.json());
 
 

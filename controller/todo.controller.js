@@ -56,7 +56,7 @@ async function updateTodo(req, res, next) {
 
 
 
-//Delete specific todo
+//Delete specific todos
 async function deleteTodo(req, res, next) {
     const todoId = req.params.id;
 
